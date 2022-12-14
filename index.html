@@ -1,68 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="styles.min.css">
+        <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon">
+        <link rel="manifest" href="manifest.json">
+        <script async src="https://cdn.jsdelivr.net/npm/pwacompat@2.0.8/pwacompat.min.js" integrity="sha384-uONtBTCBzHKF84F6XvyC8S0gL8HTkAPeCyBNvfLfsqHh+Kd6s/kaS4BdmNQ5ktp1" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="lib/codemirror.css">
+        <script src="lib/codemirror.js"></script>
+        <script src="mode/htmlmixed/htmlmixed.js"></script>
+        <script src="mode/xml/xml.js"></script>
+        <script src="mode/css/css.js"></script>
+        <script src="mode/javascript/javascript.js"></script>
+        <script src="edit/closebrackets.js"></script>
+        <script src="edit/closetag.js"></script>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <title>Realtime HTML Editor</title>
+    </head>
+    <body>
+        <header>
+            <h1 id="title">HTML5 Online Editor</h1>
+        </header>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Code Editor</title>
-    <style>
-        body {
-            text-align: center;
-        }
+        <div class="container">
+            <div id="code_area"></div>
+            <iframe id="code_output"></iframe>
+        </div>
 
-        textarea {
-            width: 32%;
-            /* float: top; */
-            min-height: 250px;
-            overflow: scroll;
-            margin: auto;
-            display: inline-block;
-            background: #f4f4f9;
-            outline: none;
-            font-family: Courier, sans-serif;
-            font-size: 14px;
-        }
-
-        iframe {
-            bottom: 0;
-            position: relative;
-            width: 100%;
-            height: 35em;
-        }
-    </style>
-</head>
-
-<body>
-    <textarea id="html" placeholder="HTML"></textarea>
-    <textarea id="css" placeholder="CSS"></textarea>
-    <textarea id="js" placeholder="JavaScript"></textarea>
-    <iframe id="code"></iframe>
-
-    <script>
-        function compile() {
-            var html = document.getElementById("html");
-            var css = document.getElementById("css");
-            var js = document.getElementById("js");
-            var code = document.getElementById("code").contentWindow.document;
-
-            document.body.onkeyup = function () {
-                code.open();
-                code.writeln(
-                    html.value +
-                    "<style>" +
-                    css.value +
-                    "</style>" +
-                    "<script>" +
-                    js.value +
-                    "</script>"
-    );
-    code.close();
-    };
-    }
-
-    compile();
-    </script>
-</body>
-
+        <script src="script.js"></script>
+    </body>
 </html>
